@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SkinCareController;
 
-Route::get('/amsha', function () {
-    return view('welcome');
-});
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/', [SkinCareController::class, 'showWelcome'])->name('welcome');
+Route::get('/form', [SkinCareController::class, 'showForm'])->name('login');
+Route::post('/recommendations', [SkinCareController::class, 'processForm'])->name('process.form');
+

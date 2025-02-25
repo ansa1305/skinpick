@@ -235,10 +235,11 @@
             <p>Help us personalize your skincare routine</p>
         </div>
 
-        <form id="profileForm">
+        <form id="profileForm" action="{{ route('process.form') }}" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
             </div>
 
             <div class="form-group">
@@ -261,12 +262,12 @@
 
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="number" id="age" min="13" max="100" placeholder="Enter your age" required>
+                <input type="number" id="age" name="age" min="13" max="100" placeholder="Enter your age" required>
             </div>
 
             <div class="form-group">
                 <label for="skinType">Skin Type</label>
-                <select id="skinType" required>
+                <select id="skinType" name="skinType" required>
                     <option value="">Select your skin type</option>
                     <option value="normal">Normal</option>
                     <option value="dry">Dry</option>
@@ -278,7 +279,7 @@
 
             <div class="form-group">
                 <label for="climate">Climate</label>
-                <select id="climate" required>
+                <select id="climate" name="climate" required>
                     <option value="">Select your climate</option>
                     <option value="tropical">Tropical</option>
                     <option value="dry">Dry</option>
@@ -291,21 +292,19 @@
             <div class="form-group">
                 <label>Budget Range</label>
                 <div class="budget-range">
-                    <input type="number" id="minBudget" placeholder="Min Budget" required>
+                    <input type="number" id="minBudget" name="minBudget" placeholder="Min Budget" required>
                     <span>to</span>
-                    <input type="number" id="maxBudget" placeholder="Max Budget" required>
+                    <input type="number" id="maxBudget" name="maxBudget" placeholder="Max Budget" required>
                 </div>
             </div>
 
             <div class="form-buttons">
-                <button type="button" class="btn btn-back">Back</button>
-                <button type="submit" class="btn btn-next">Next</button>
+                <button type="submit" class="btn btn-next">Find My Products</button>
             </div>
         </form>
     </div>
 
     <script>
-        // Simple form validation
         const form = document.getElementById('profileForm');
         const progress = document.querySelector('.progress');
 
@@ -324,12 +323,7 @@
             const progressPercentage = (filledFields / fields.length) * 100;
             progress.style.width = `${progressPercentage}%`;
         });
-
-        // Prevent form submission (for demo)
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add your form submission logic here
-        });
     </script>
 </body>
 </html>
+
